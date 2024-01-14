@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
-	'username' => 'fttt8742_root',
-	'password' => 'vPIE?f1O=$9}',
+	'username' => 'fttt8742_fadil',
+	'password' => '2gt!,tU$omiY',
 	'database' => 'fttt8742_trial_east',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
