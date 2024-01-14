@@ -30,6 +30,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {?>
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/weather-icon/css/weather-icons.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/weather-icon/css/weather-icons-wind.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dashboard.css">
+
   <?php
 } elseif ($this->uri->segment(2) == "gamas") {?>
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/dropzonejs/dropzone.css">

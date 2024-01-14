@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="dropdown <?php echo $this->uri->segment(2) == '' || $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>">
-              <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="#" class="nav-link has-dropdown"><i class="fas fa-chart-line"></i><span>Dashboard</span></a>
               <ul class="dropdown-menu">
                 <li class="<?php echo $this->uri->segment(2) == 'index_0' ? 'active' : ''; ?>"><a class="nav-link" href="<?php echo base_url(); ?>dist/index_0">General Dashboard</a></li>
                 <!--
