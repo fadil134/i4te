@@ -38,7 +38,7 @@
       margin-top: 1px;
       padding: 2px 15px;
       &:not(.note-btn) {
-        border-radius: 30px;
+        border-radius: 0.25rem;
       }
       &:hover {
         box-shadow: none;
@@ -223,7 +223,7 @@
     width: 80px;
     height: 80px;
     margin: 10px;
-    border-radius: 3px;
+    border-radius: 0.25rem;
     line-height: 94px;
     text-align: center;
     float: left;

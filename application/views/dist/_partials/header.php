@@ -26,11 +26,8 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {?>
     href="<?php echo base_url(); ?>assets/modules/owlcarousel2/dist/assets/owl.theme.default.min.css">
   <?php
 } elseif ($this->uri->segment(2) == "index_0") {?>
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/jqvmap/dist/jqvmap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/weather-icon/css/weather-icons.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/weather-icon/css/weather-icons-wind.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/modules/summernote/summernote-bs4.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/dashboard.css">
+  <link rel="stylesheet" href="<?=base_url();?>assets/css/dashboard.css">
+  <link rel="stylesheet" href="<?=base_url();?>assets/modules/datatables/DataTables-1.13.8/css/dataTables.bootstrap4.min.css">
 
   <?php
 } elseif ($this->uri->segment(2) == "gamas") {?>

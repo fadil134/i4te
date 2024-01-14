@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Kota_model','Action_taken','R_c','Segment','Upload_M');
+$autoload['model'] = array('Kota_model','Action_taken','R_c','Segment','Upload_M','Gamas_model');
