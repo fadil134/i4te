@@ -10,6 +10,13 @@ $this->load->view('dist/_partials/header');
           </div>
 
           <div class="section-body">
+            <div class="container">
+              <div class="row">
+                <div class="card">
+                  
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       </div>
