@@ -98,6 +98,8 @@ echo count($uniqueIdCases);
             </div>
             <div class="card-body">
               <canvas id="mttr"></canvas>
+              <canvas id="y-axis-2"
+                style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; pointer-events: none;"></canvas>
             </div>
           </div>
         </div>
@@ -214,8 +216,7 @@ if ($slas->sc_durasi < 7) {
             data: avgMTTRData,
             borderColor: 'rgba(255, 206, 86, 1)',
             borderWidth: 2,
-            fill: false,
-            yAxisID: 'y-axis-2'
+            fill: false
           }
         ]
       },
@@ -230,6 +231,9 @@ if ($slas->sc_durasi < 7) {
           y2: {
             type: 'linear',
             position: 'right',
+            grid: {
+              drawOnChartArea: false // Ensure the line chart doesn't overlay the bars
+            },
             beginAtZero: true,
             title: {
               display: true,
