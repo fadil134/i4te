@@ -26,14 +26,14 @@ $this->load->view('dist/_partials/header');
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
             <div class="stat">
               <?php
-                $filteredSla = array_filter($sla, function ($item) {
-                    return $item->sc_durasi > 7;
-                });
+$filteredSla = array_filter($sla, function ($item) {
+    return $item->sc_durasi > 7;
+});
 
-                $uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
+$uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
 
-                echo count($uniqueIdCases);
-              ?>
+echo count($uniqueIdCases);
+?>
             </div>
             <!--<div class="label">Total Users</div>-->
           </div>
@@ -45,14 +45,14 @@ $this->load->view('dist/_partials/header');
             <h6 class="card-stat-title">Meet SLA (No)</h6>
             <div class="stat">
               <?php
-              $filteredSla = array_filter($sla, function ($item) {
-                  return $item->sc_durasi < 7;
-              });
+$filteredSla = array_filter($sla, function ($item) {
+    return $item->sc_durasi < 7;
+});
 
-              $uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
+$uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
 
-              echo count($uniqueIdCases);
-            ?>
+echo count($uniqueIdCases);
+?>
             </div>
             <!--<div class="label">Total Users</div>-->
           </div>
@@ -143,12 +143,12 @@ $this->load->view('dist/_partials/header');
                 </td>
                 <td>
                   <?php
-                        if ($slas->sc_durasi < 7) {
-                            echo 'No';
-                        } else {
-                            echo 'Yes';
-                        }
-                    ?>
+if ($slas->sc_durasi < 7) {
+    echo 'No';
+} else {
+    echo 'Yes';
+}
+?>
                 </td>
               </tr>
               <?php endforeach;?>
@@ -162,7 +162,7 @@ $this->load->view('dist/_partials/header');
 <?php $this->load->view('dist/_partials/footer');?>
 
 <script>
-  var chartData = <?= json_encode($chart); ?>;
+  var chartData = <?=json_encode($chart);?>;
   $(document).ready(function () {
     $(".dataTables_scrollBody").niceScroll();
     var table = $('#example').DataTable({
@@ -178,81 +178,50 @@ $this->load->view('dist/_partials/header');
 
       column.visible(!column.visible());
     });
+    // Data yang diperoleh dari database (gantilah dengan data sesungguhnya)
+    
 
-    var countPerCity = {};
-    chartData.forEach(function (data) {
-      var kota = data.kota;
-      if (!countPerCity[kota]) {
-        countPerCity[kota] = {
-          id_case: 1,
-          total_ts: parseInt(data.total_ts)
-        };
-      } else {
-        countPerCity[kota].id_case++;
-        countPerCity[kota].total_ts += parseInt(data.total_ts);
+    // Mengelompokkan data per kota
+    const groupedData = {};
+    chartData.forEach(item => {
+      if (!groupedData[item.kota]) {
+        groupedData[item.kota] = [];
       }
+      groupedData[item.kota].push(item.total_ts);
     });
 
-    var labels = Object.keys(countPerCity);
-    var idCaseData = labels.map(function (kota) {
-      return countPerCity[kota].id_case;
+    // Menyiapkan data untuk chart
+    const labels = Object.keys(groupedData);
+    const datasets = Object.values(groupedData).map(data => ({
+      data: data,
+      backgroundColor: data.map(total_ts => total_ts > 7 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)'),
+    }));
+
+    // Menambahkan rata-rata total_ts ke datasets
+    const avgTotalTs = chartData.map(item => item.total_ts).reduce((a, b) => a + b, 0) / chartData.length;
+    datasets.push({
+      type: 'line',
+      label: 'Average Total Ts',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 2,
+      fill: false,
+      data: Array(labels.length).fill(avgTotalTs),
     });
 
-    var totalTsData = labels.map(function (kota) {
-      return countPerCity[kota].total_ts;
-    });
-    labels.sort();
-    var ctx = document.getElementById("mttr").getContext("2d");
-
-    var myChart = new Chart(ctx, {
-      type: "bar",
+    // Membuat stacked bar chart dan line chart menggunakan Chart.js
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
       data: {
         labels: labels,
-        datasets: [{
-          label: "Jumlah Case",
-          data: idCaseData,
-          yAxisID: "y-axis-1",
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          borderColor: "rgba(75, 192, 192, 1)",
-          borderWidth: 1
-        }, {
-          label: "MTTR",
-          data: totalTsData,
-          yAxisID: "y-axis-2",
-          type: "line",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 2,
-          fill: false
-        }]
+        datasets: datasets,
       },
       options: {
         scales: {
-          yAxes: [{
-            id: "y-axis-1",
-            type: "linear",
-            position: "left",
-            title: {
-              display: true,
-              text: "Jumlah Case"
-            },
-            ticks: {
-              beginAtZero: true,
-              precision: 0
-            }
-          }, {
-            id: "y-axis-2",
-            type: "linear",
-            position: "right",
-            title: {
-              display: true,
-              text: "MTTR"
-            },
-            ticks: {
-              beginAtZero: true
-            }
-          }]
-        }
-      }
+          x: { stacked: true },
+          y: { stacked: true },
+        },
+      },
     });
   });
 </script>
