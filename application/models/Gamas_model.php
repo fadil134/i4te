@@ -24,6 +24,7 @@ class Gamas_model extends CI_Model
         $this->db->select('gamas.id_case, master_kota.kota');
         $this->db->select_sum("HOUR(TIMEDIFF(gamas_ts.ct, gamas_ts.opent))", 'total_ts');
         $this->db->select_sum("HOUR(TIMEDIFF(gamas_obs.enDob, gamas_obs.sTob))", 'total_obs');
+        $this->db->select_avg("HOUR(TIMEDIFF(gamas_ts.ct, gamas_ts.opent))", 'avg_total_ts');
         $this->db->select('(SUM(HOUR(TIMEDIFF(gamas_ts.ct, gamas_ts.opent))) - COALESCE(SUM(HOUR(TIMEDIFF(gamas_obs.enDob, gamas_obs.sTob))), 0)) as sc_durasi', false);
         $this->db->from('gamas');
         $this->db->join('master_kota', 'gamas.city_id = master_kota.id', 'left');
