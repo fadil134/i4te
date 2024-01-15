@@ -209,7 +209,7 @@ if ($slas->sc_durasi < 7) {
     });
 
     // Membuat stacked bar chart dan line chart menggunakan Chart.js
-    const ctx = document.getElementById('myChart').getContext('2d');
+    const ctx = $('#mttr').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
