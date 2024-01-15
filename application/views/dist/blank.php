@@ -162,7 +162,7 @@ if ($slas->sc_durasi < 7) {
 <?php $this->load->view('dist/_partials/footer');?>
 
 <script>
-  var chartData = <?=json_encode($chart);?>;
+  var data = <?= json_encode($chart);?>;
   $(document).ready(function () {
     $(".dataTables_scrollBody").niceScroll();
     var table = $('#example').DataTable({
@@ -179,49 +179,55 @@ if ($slas->sc_durasi < 7) {
       column.visible(!column.visible());
     });
     // Data yang diperoleh dari database (gantilah dengan data sesungguhnya)
-    
+
 
     // Mengelompokkan data per kota
-    const groupedData = {};
-    chartData.forEach(item => {
-      if (!groupedData[item.kota]) {
-        groupedData[item.kota] = [];
-      }
-      groupedData[item.kota].push(item.total_ts);
-    });
+    var labels = data.map(item => item.kota);
+    var totalMTTRData = data.map(item => item.total_MTTR);
+    var underSLAData = data.map(item => item.under_SLA);
+    var avgMTTRData = data.map(item => item.avg_MTTR);
 
-    // Menyiapkan data untuk chart
-    const labels = Object.keys(groupedData);
-    const datasets = Object.values(groupedData).map(data => ({
-      data: data,
-      backgroundColor: data.map(total_ts => total_ts > 7 ? 'rgba(255, 99, 132, 0.7)' : 'rgba(54, 162, 235, 0.7)'),
-    }));
-
-    // Menambahkan rata-rata total_ts ke datasets
-    const avgTotalTs = chartData.map(item => item.total_ts).reduce((a, b) => a + b, 0) / chartData.length;
-    datasets.push({
-      type: 'line',
-      label: 'Average Total Ts',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 2,
-      fill: false,
-      data: Array(labels.length).fill(avgTotalTs),
-    });
-
-    // Membuat stacked bar chart dan line chart menggunakan Chart.js
-    const ctx = $('#mttr');
-    const myChart = new Chart(ctx, {
+    // Creating stacked bar and line chart
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
-        datasets: datasets,
+        datasets: [
+          {
+            label: 'Total MTTR',
+            data: totalMTTRData,
+            backgroundColor: 'rgba(75, 192, 192, 0.7)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Under SLA',
+            data: underSLAData,
+            backgroundColor: 'rgba(255, 99, 132, 0.7)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Avg MTTR',
+            data: avgMTTRData,
+            type: 'line',
+            fill: false,
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 2
+          }
+        ]
       },
       options: {
         scales: {
-          x: { stacked: true },
-          y: { stacked: true },
-        },
-      },
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
     });
   });
 </script>
