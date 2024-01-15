@@ -43,8 +43,8 @@ class Dist extends CI_Controller
             'chart' => $this->Gamas_model->chart_dashboard()
         );
 
-        //print_r($data['sla']);
-        $this->load->view('dist/blank', $data);
+        print_r($data['chart']);
+        //$this->load->view('dist/blank', $data);
     }
 
     public function gamas()
