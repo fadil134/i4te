@@ -189,7 +189,7 @@ if ($slas->sc_durasi < 7) {
 
     // Creating stacked bar and line chart
     var ctx = $('#mttr');
-    var myChart = new Chart(ctx, {
+    var myMixedChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: labels,
@@ -209,12 +209,13 @@ if ($slas->sc_durasi < 7) {
             borderWidth: 1
           },
           {
+            type: 'line',
             label: 'Avg MTTR',
             data: avgMTTRData,
-            type: 'line',
-            fill: false,
             borderColor: 'rgba(255, 206, 86, 1)',
-            borderWidth: 2
+            borderWidth: 2,
+            fill: false,
+            yAxisID: 'y-axis-2'
           }
         ]
       },
@@ -225,6 +226,15 @@ if ($slas->sc_durasi < 7) {
           },
           y: {
             stacked: true
+          },
+          y2: {
+            type: 'linear',
+            position: 'right',
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Avg MTTR'
+            }
           }
         }
       }
