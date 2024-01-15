@@ -69,13 +69,13 @@ $(function() {
 
   var sidebar_nicescroll;
   var update_sidebar_nicescroll = function() {
-    let a = setInterval(function() {
+    let a = setTimeout(function() {
       if(sidebar_nicescroll != null)
         sidebar_nicescroll.resize();
     }, 10);
-
+    
     setTimeout(function() {
-      clearInterval(a);
+      clearTimeout(a);
     }, 600);
   }
 
@@ -84,7 +84,8 @@ $(function() {
       $(".main-sidebar").niceScroll(sidebar_nicescroll_opts);
       sidebar_nicescroll = $(".main-sidebar").getNiceScroll();
 
-      $(".main-sidebar .sidebar-menu li a.has-dropdown").off('click').on('click', function() {
+      $(".main-sidebar .sidebar-menu li a.has-dropdown").off('click').on('click', function(event) {
+        event.preventDefault();
         var me = $(this);
 
         me.parent().find('> .dropdown-menu').slideToggle(500, function() {
@@ -97,7 +98,7 @@ $(function() {
   }
   sidebar_dropdown();
 
-  if($("#top-5-scroll").length) {
+  if ($("#top-5-scroll").length > 0) {
     $("#top-5-scroll").css({
       height: 315
     }).niceScroll();
