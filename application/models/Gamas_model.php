@@ -35,7 +35,7 @@ class Gamas_model extends CI_Model
         $this->db->join('gamas_obs', 'gamas_obs.case_id = gamas.id_case', 'left');
         $this->db->join('master_kota', 'gamas.city_id = master_kota.id', 'left');
         $this->db->where('gamas.updated_by !=', '');
-        $this->db->group_by('gamas.city_id, gamas.id_case');
+        $this->db->group_by('gamas.city_id');
         $this->db->order_by('master_kota.kota', 'ASC');
 
         $query = $this->db->get();
