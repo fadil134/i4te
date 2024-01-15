@@ -188,7 +188,7 @@ if ($slas->sc_durasi < 7) {
     var avgMTTRData = data.map(item => item.avg_MTTR);
 
     // Creating stacked bar and line chart
-    var ctx = $('#chart');
+    var ctx = $('#mttr');
     var myChart = new Chart(ctx, {
       type: 'bar',
       data: {
