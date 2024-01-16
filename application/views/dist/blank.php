@@ -189,10 +189,10 @@ if ($slas->sc_durasi < 7) {
     var underSLAData = data.map(item => item.under_SLA);
     var avgMTTRData = data.map(item => item.avg_MTTR);
 
-    // Creating stacked bar and line chart
+    // Creating stacked column bar chart
     var ctx = $('#mttr');
     var myMixedChart = new Chart(ctx, {
-      type: 'bar',
+      type: 'bar', // Change the type to 'bar' for a stacked column bar chart
       data: {
         labels: labels,
         datasets: [
@@ -232,7 +232,7 @@ if ($slas->sc_durasi < 7) {
             type: 'linear',
             position: 'right',
             grid: {
-              drawOnChartArea: false // Ensure the line chart doesn't overlay the bars
+              drawOnChartArea: false
             },
             beginAtZero: true,
             title: {
@@ -243,5 +243,6 @@ if ($slas->sc_durasi < 7) {
         }
       }
     });
+
   });
 </script>
