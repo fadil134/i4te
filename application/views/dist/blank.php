@@ -98,8 +98,6 @@ echo count($uniqueIdCases);
             </div>
             <div class="card-body">
               <canvas id="mttr"></canvas>
-              <canvas id="y-axis-2"
-                style="width: 100%; height: 100%; position: absolute; left: 0; top: 0; pointer-events: none;"></canvas>
             </div>
           </div>
         </div>
