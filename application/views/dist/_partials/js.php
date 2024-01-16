@@ -25,8 +25,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {?>
 } elseif ($this->uri->segment(2) == "index_0") {?>
 <script src="<?=base_url();?>assets/modules/datatables/DataTables-1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="<?=base_url();?>assets/modules/datatables/DataTables-1.13.8/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
-
+<script src="<?=base_url();?>assets/modules/chart.min.js"></script>
 
 <?php
 } elseif ($this->uri->segment(2) == "gamas") {?>
