@@ -25,7 +25,7 @@ if ($this->uri->segment(2) == "" || $this->uri->segment(2) == "index") {?>
 } elseif ($this->uri->segment(2) == "index_0") {?>
 <script src="<?=base_url();?>assets/modules/datatables/DataTables-1.13.8/js/jquery.dataTables.min.js"></script>
 <script src="<?=base_url();?>assets/modules/datatables/DataTables-1.13.8/js/dataTables.bootstrap4.min.js"></script>
-<script src="<?=base_url();?>assets/modules/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <?php
 } elseif ($this->uri->segment(2) == "gamas") {?>

@@ -187,59 +187,35 @@ if ($slas->sc_durasi < 7) {
     var underSLAData = data.map(item => item.under_SLA);
     var avgMTTRData = data.map(item => item.avg_MTTR);
 
-    // Creating grouped and stacked column bar chart
-    var ctx = $('#mttr');
-    var myMixedChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: 'Total MTTR',
-            data: totalMTTRData,
-            backgroundColor: 'rgba(75, 192, 192, 0.7)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            stack: 'Stack 1' // Assign the same stack value for grouped stacking
-          },
-          {
-            label: 'Under SLA',
-            data: underSLAData,
-            backgroundColor: 'rgba(255, 99, 132, 0.7)',
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-            stack: 'Stack 1' // Assign the same stack value for grouped stacking
-          },
-          {
-            type: 'line',
-            label: 'Avg MTTR',
-            data: avgMTTRData,
-            borderColor: 'rgba(255, 206, 86, 1)',
-            borderWidth: 2,
-            fill: false,
-            yAxisID: 'y-axis-2'
-          }
-        ]
+    // Chart options
+    var options = {
+      chart: {
+        type: 'bar',
+        stacked: true,
+        height: 350,
       },
-      options: {
-        scales: {
-          x: {
-            stacked: true
-          },
-          y: {
-            stacked: true
-          },
-          y2: {
-            type: 'linear',
-            position: 'right',
-            beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Avg MTTR'
-            }
-          }
-        }
-      }
-    });
+      plotOptions: {
+        bar: {
+          horizontal: false,
+        },
+      },
+      series: [
+        { name: 'Total MTTR', data: totalMTTRData },
+        { name: 'Under SLA', data: underSLAData },
+        { name: 'Avg MTTR', data: avgMTTRData }
+      ],
+      xaxis: {
+        categories: labels,
+      },
+      legend: {
+        position: 'top',
+      },
+    };
+
+    // Initialize ApexCharts
+    var chart = new ApexCharts(document.getElementById('chart'), options);
+
+    // Render the chart
+    chart.render();
   });
 </script>
