@@ -189,10 +189,10 @@ if ($slas->sc_durasi < 7) {
     var underSLAData = data.map(item => item.under_SLA);
     var avgMTTRData = data.map(item => item.avg_MTTR);
 
-    // Creating stacked column bar chart
+    // Creating grouped and stacked column bar chart
     var ctx = $('#mttr');
     var myMixedChart = new Chart(ctx, {
-      type: 'bar', // Change the type to 'bar' for a stacked column bar chart
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [
@@ -201,14 +201,16 @@ if ($slas->sc_durasi < 7) {
             data: totalMTTRData,
             backgroundColor: 'rgba(75, 192, 192, 0.7)',
             borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
+            borderWidth: 1,
+            stack: 'Stack 1' // Assign the same stack value for grouped stacking
           },
           {
             label: 'Under SLA',
             data: underSLAData,
             backgroundColor: 'rgba(255, 99, 132, 0.7)',
             borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1
+            borderWidth: 1,
+            stack: 'Stack 1' // Assign the same stack value for grouped stacking
           },
           {
             type: 'line',
@@ -216,7 +218,8 @@ if ($slas->sc_durasi < 7) {
             data: avgMTTRData,
             borderColor: 'rgba(255, 206, 86, 1)',
             borderWidth: 2,
-            fill: false
+            fill: false,
+            yAxisID: 'y-axis-2'
           }
         ]
       },
@@ -231,9 +234,6 @@ if ($slas->sc_durasi < 7) {
           y2: {
             type: 'linear',
             position: 'right',
-            grid: {
-              drawOnChartArea: false
-            },
             beginAtZero: true,
             title: {
               display: true,
@@ -243,6 +243,5 @@ if ($slas->sc_durasi < 7) {
         }
       }
     });
-
   });
 </script>
