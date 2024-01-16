@@ -97,7 +97,7 @@ echo count($uniqueIdCases);
               <h4>MTTR & Total case</h4>
             </div>
             <div class="card-body">
-              <canvas id="mttr"></canvas>
+              <div id="chart"></div>
             </div>
           </div>
         </div>
