@@ -97,7 +97,7 @@ echo count($uniqueIdCases);
               <h4>MTTR & Total case</h4>
             </div>
             <div class="card-body">
-              <div id="chart"></div>
+              <canvas id="chart"></canvas>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@ if ($slas->sc_durasi < 7) {
 <?php $this->load->view('dist/_partials/footer');?>
 
 <script>
-  var data = <?= json_encode($chart);?>;
+  var chartData = <?= json_encode($chart);?>;
   $(document).ready(function () {
     $(".dataTables_scrollBody").niceScroll();
     var table = $('#example').DataTable({
@@ -178,44 +178,71 @@ if ($slas->sc_durasi < 7) {
 
       column.visible(!column.visible());
     });
-    // Data yang diperoleh dari database (gantilah dengan data sesungguhnya)
 
+    const labels = chartData.map(item => item.kota);
 
-    // Mengelompokkan data per kota
-    var labels = data.map(item => item.kota);
-    var totalMTTRData = data.map(item => item.total_MTTR);
-    var underSLAData = data.map(item => item.under_SLA);
-    var avgMTTRData = data.map(item => item.avg_MTTR);
-
-    // Chart options
-    var options = {
-      chart: {
-        type: 'bar',
-        stacked: true,
-        height: 350,
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
+    const data = {
+      labels: labels,
+      datasets: [
+      {
+          label: 'MTTR per Case',
+          data: chartData.map(item => (item.jumlah_case !== 0) ? item.MTTR / item.jumlah_case : 0),
+          type: 'line',
+          borderColor: 'rgba(165, 42, 42, 1)',
+          backgroundColor: 'rgba(165, 42, 42, 0.5)',
+          borderWidth: 2,
         },
-      },
-      series: [
-        { name: 'Total MTTR', data: totalMTTRData },
-        { name: 'Under SLA', data: underSLAData },
-        { name: 'Avg MTTR', data: avgMTTRData }
-      ],
-      xaxis: {
-        categories: labels,
-      },
-      legend: {
-        position: 'top',
-      },
+        {
+          barThickness: 20,
+          label: 'Meet SLA (YES)',
+          data: chartData.map(item => item.under_sla),
+          borderColor: 'rgba(255, 0, 0, 1)',
+          backgroundColor: 'rgba(255, 0, 0, 0.5)',
+          borderWidth: 2,
+          borderRadius: Number.MAX_VALUE,
+          borderSkipped: false,
+        },
+        {
+          barThickness: 20,
+          label: 'Meet SLA (NO)',
+          data: chartData.map(item => item.meet_sla),
+          borderColor: 'rgba(0, 0, 255, 1)',
+          backgroundColor: 'rgba(0, 0, 255, 0.5)',
+          borderWidth: 2,
+        },
+        {
+          barThickness: 20,
+          label: 'Jumlah Case',
+          data: chartData.map(item => item.jumlah_case),
+          borderColor: 'rgba(0, 255, 0, 1)',
+          backgroundColor: 'rgba(0, 255, 0, 0.5)',
+          borderWidth: 2,
+        },
+      ]
     };
 
-    // Initialize ApexCharts
-    var chart = new ApexCharts(document.getElementById('chart'), options);
+    var ctx = $('#chart');
 
-    // Render the chart
-    chart.render();
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'MTTR'
+          },
+        },
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
+    });
   });
 </script>

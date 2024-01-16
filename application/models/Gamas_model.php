@@ -23,12 +23,13 @@ class Gamas_model extends CI_Model
     public function chart_dashboard()
     {
         $this->db->select('
-    gamas.id_case,
     master_kota.kota AS kota,
     COUNT(DISTINCT gamas.id_case) AS jumlah_case,
-    SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) AS total_MTTR,
-    SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) / COUNT(DISTINCT gamas.id_case) AS avg_MTTR,
-    COUNT(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0) < 7) AS under_SLA
+    SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct)) AS total_TS,
+    SUM(COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) AS total_OBS,
+    SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) AS MTTR,
+    COUNT(CASE WHEN (TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) < 7 THEN 1 ELSE NULL END) AS under_sla,
+    COUNT(CASE WHEN (TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) > 7 THEN 1 ELSE NULL END) AS meet_sla
 ');
         $this->db->from('gamas');
         $this->db->join('gamas_ts', 'gamas_ts.case_id = gamas.id_case', 'left');
@@ -39,7 +40,7 @@ class Gamas_model extends CI_Model
         $this->db->order_by('master_kota.kota', 'ASC');
 
         $query = $this->db->get();
-        
+
         return $query->result_array();
     }
 }
