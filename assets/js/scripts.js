@@ -17,6 +17,20 @@ if(window.Chart) {
 }
 */
 
+if(window.Chart) {
+  Chart.defaults.font.family = "'Nunito', 'Segoe UI', 'Arial'";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.font.weight = 500;
+  Chart.defaults.color = "#999";
+  Chart.defaults.plugins.tooltip.backgroundColor = '#000';
+  Chart.defaults.plugins.tooltip.titleFont.family = "'Nunito', 'Segoe UI', 'Arial'";
+  Chart.defaults.plugins.tooltip.titleFont.color = '#fff';
+  Chart.defaults.plugins.tooltip.titleFont.size = 20;
+  Chart.defaults.plugins.tooltip.xAlignPadding = 10;  // Use xAlignPadding for x-axis padding
+  Chart.defaults.plugins.tooltip.yPadding = 10;
+  Chart.defaults.plugins.tooltip.cornerRadius = 3;
+}
+
 // DropzoneJS
 if(window.Dropzone) {
   Dropzone.autoDiscover = false;
