@@ -1,5 +1,5 @@
 .card-stat {
-    width: 209px;
+    width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
     margin-bottom: 10px;
@@ -12,7 +12,7 @@
 
 .card-stat-body {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
     background-color: #fffffff5;
     border-radius: 0.50rem;
 }
@@ -24,7 +24,7 @@
 }
 
 .stat {
-    font-size: 24px;
+    font-size: 5px;
     font-weight: bold;
     color: #007bff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Emboss effect */

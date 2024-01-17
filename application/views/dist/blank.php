@@ -9,7 +9,7 @@ $this->load->view('dist/_partials/header');
       <h1>Dashboard</h1>
     </div>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Total Gamas</h6>
@@ -20,7 +20,7 @@ $this->load->view('dist/_partials/header');
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
@@ -39,7 +39,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (No)</h6>
@@ -59,18 +59,19 @@ echo count($uniqueIdCases);
         </div>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
-            <div class="stat"><?php echo $card[0]->avg_mttr ?></div>
+            <div class="stat">
+              <?php echo $card[0]->avg_mttr ?>
+            </div>
             <!--<div class="label">Total Users</div>-->
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">MTTR Meet SLA (Yes)</h6>
@@ -79,7 +80,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">MTTR Meet SLA (No)</h6>
@@ -91,7 +92,7 @@ echo count($uniqueIdCases);
     </div>
     <div class="section-body">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           <div class="card">
             <div class="card-header">
               <h4>MTTR & Total case</h4>
@@ -112,48 +113,50 @@ echo count($uniqueIdCases);
             <a class="toggle-vis" data-column="3">Durasi Troubleshooting</a> -
             <a class="toggle-vis" data-column="4">Total Durasi</a>
           </div>
-          <table id="example" class="table table-striped table-bordered" style="width: 100%;">
-            <thead>
-              <tr class="text-center">
-                <th>Case Id</th>
-                <th>Kota</th>
-                <th>Durasi Stop Clock</th>
-                <th>Durasi Troubleshooting</th>
-                <th>Total Durasi</th>
-                <th>Meet SLA ?<code>(7 Jam)</code></th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($sla as $slas): ?>
-              <tr>
-                <td>
-                  <?=$slas->id_case?>
-                </td>
-                <td>
-                  <?=$slas->kota?>
-                </td>
-                <td>
-                  <?=$slas->total_obs?>
-                </td>
-                <td>
-                  <?=$slas->total_ts?>
-                </td>
-                <td>
-                  <?=$slas->sc_durasi?>
-                </td>
-                <td>
-                  <?php
+          <div class="col-lg">
+            <table id="example" class="table table-striped table-bordered" style="width: 100%;">
+              <thead>
+                <tr class="text-center">
+                  <th>Case Id</th>
+                  <th>Kota</th>
+                  <th>Durasi Stop Clock</th>
+                  <th>Durasi Troubleshooting</th>
+                  <th>Total Durasi</th>
+                  <th>Meet SLA ?<code>(7 Jam)</code></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($sla as $slas): ?>
+                <tr>
+                  <td>
+                    <?=$slas->id_case?>
+                  </td>
+                  <td>
+                    <?=$slas->kota?>
+                  </td>
+                  <td>
+                    <?=$slas->total_obs?>
+                  </td>
+                  <td>
+                    <?=$slas->total_ts?>
+                  </td>
+                  <td>
+                    <?=$slas->sc_durasi?>
+                  </td>
+                  <td>
+                    <?php
 if ($slas->sc_durasi < 7) {
     echo 'No';
 } else {
     echo 'Yes';
 }
 ?>
-                </td>
-              </tr>
-              <?php endforeach;?>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+                <?php endforeach;?>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -184,7 +187,7 @@ if ($slas->sc_durasi < 7) {
     const data = {
       labels: labels,
       datasets: [
-      {
+        {
           label: 'MTTR per Case',
           data: chartData.map(item => (item.jumlah_case !== 0) ? item.MTTR / item.jumlah_case : 0),
           type: 'line',
@@ -198,9 +201,7 @@ if ($slas->sc_durasi < 7) {
           data: chartData.map(item => item.under_sla),
           borderColor: 'rgba(255, 0, 0, 1)',
           backgroundColor: 'rgba(255, 0, 0, 0.5)',
-          borderWidth: 2,
-          borderRadius: Number.MAX_VALUE,
-          borderSkipped: false,
+          borderWidth: 1,
         },
         {
           barThickness: 20,
@@ -208,7 +209,7 @@ if ($slas->sc_durasi < 7) {
           data: chartData.map(item => item.meet_sla),
           borderColor: 'rgba(0, 0, 255, 1)',
           backgroundColor: 'rgba(0, 0, 255, 0.5)',
-          borderWidth: 2,
+          borderWidth: 1,
         },
       ]
     };
