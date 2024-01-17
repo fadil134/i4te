@@ -210,14 +210,6 @@ if ($slas->sc_durasi < 7) {
           backgroundColor: 'rgba(0, 0, 255, 0.5)',
           borderWidth: 2,
         },
-        {
-          barThickness: 20,
-          label: 'Jumlah Case',
-          data: chartData.map(item => item.jumlah_case),
-          borderColor: 'rgba(0, 255, 0, 1)',
-          backgroundColor: 'rgba(0, 255, 0, 0.5)',
-          borderWidth: 2,
-        },
       ]
     };
 
