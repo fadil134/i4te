@@ -24,7 +24,7 @@
 }
 
 .stat {
-    font-size: 5px;
+    font-size: 20px;
     font-weight: bold;
     color: #007bff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Emboss effect */
