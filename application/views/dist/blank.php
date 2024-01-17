@@ -101,7 +101,7 @@ echo count($uniqueIdCases);
             </div>
             <div class="card-body">
               <div class="col-lg col-md-6">
-                <canvas id="chart" style="width: fit-content;"></canvas>
+                <canvas id="chart" style="width: 100%;"></canvas>
               </div>
             </div>
           </div>
