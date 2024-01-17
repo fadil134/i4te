@@ -9,7 +9,7 @@ $this->load->view('dist/_partials/header');
       <h1>Dashboard</h1>
     </div>
     <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Total Gamas</h6>
@@ -20,7 +20,7 @@ $this->load->view('dist/_partials/header');
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
@@ -39,7 +39,9 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (No)</h6>
@@ -58,7 +60,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
@@ -94,13 +96,13 @@ echo count($uniqueIdCases);
   -->
     <div class="section-body">
       <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-8 col-md-12">
           <div class="card">
             <div class="card-header">
               <h4>MTTR & Total case</h4>
             </div>
             <div class="card-body">
-              <div class="col-lg col-md-6">
+              <div class="col-lg">
                 <canvas id="chart" height="400"></canvas>
               </div>
             </div>
