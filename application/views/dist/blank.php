@@ -101,7 +101,7 @@ echo count($uniqueIdCases);
             </div>
             <div class="card-body">
               <div class="col-lg col-md-6">
-                <canvas id="chart" style="width: 100%;"></canvas>
+                <canvas id="chart" height="400"></canvas>
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@ echo count($uniqueIdCases);
             <a class="toggle-vis" data-column="3">Durasi Troubleshooting</a> -
             <a class="toggle-vis" data-column="4">Total Durasi</a>
           </div>
-          <div class="col-lg" style="width: 100%;">
+          <div class="col-lg table-responsive" style="width: 100%;">
             <table id="example" class="table table-striped table-bordered">
               <thead>
                 <tr class="text-center">
@@ -224,9 +224,11 @@ if ($slas->sc_durasi < 7) {
       type: 'bar',
       data: data,
       options: {
+        maintainAspectRatio: false, // Set to false to allow explicit height
+        aspectRatio: 2,
         plugins: {
           title: {
-            display: true,
+            display: false,
             text: 'MTTR'
           },
         },

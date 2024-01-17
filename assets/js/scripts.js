@@ -16,7 +16,7 @@ if(window.Chart) {
   Chart.defaults.global.tooltips.cornerRadius = 3;
 }
 */
-
+/*
 if(window.Chart) {
   Chart.defaults.font.family = "'Nunito', 'Segoe UI', 'Arial'";
   Chart.defaults.font.size = 11;
@@ -30,7 +30,7 @@ if(window.Chart) {
   Chart.defaults.plugins.tooltip.yPadding = 10;
   Chart.defaults.plugins.tooltip.cornerRadius = 3;
 }
-
+*/
 // DropzoneJS
 if(window.Dropzone) {
   Dropzone.autoDiscover = false;
