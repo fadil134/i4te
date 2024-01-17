@@ -9,7 +9,7 @@ $this->load->view('dist/_partials/header');
       <h1>Dashboard</h1>
     </div>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Total Gamas</h6>
@@ -20,7 +20,7 @@ $this->load->view('dist/_partials/header');
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
@@ -39,7 +39,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (No)</h6>
@@ -58,9 +58,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-3">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
@@ -71,12 +69,15 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
+    </div>
+    <!--
+    <div class="row">
       <div class="col-lg-4">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">MTTR Meet SLA (Yes)</h6>
             <div class="stat">1234</div>
-            <!--<div class="label">Total Users</div>-->
+            <div class="label">Total Users</div>
           </div>
         </div>
       </div>
@@ -85,11 +86,12 @@ echo count($uniqueIdCases);
           <div class="card-stat-body">
             <h6 class="card-stat-title">MTTR Meet SLA (No)</h6>
             <div class="stat">1234</div>
-            <!--<div class="label">Total Users</div>-->
+            <div class="label">Total Users</div>
           </div>
         </div>
       </div>
     </div>
+  -->
     <div class="section-body">
       <div class="row">
         <div class="col-lg-9">
