@@ -9,7 +9,7 @@ $this->load->view('dist/_partials/header');
       <h1>Dashboard</h1>
     </div>
     <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Total Gamas</h6>
@@ -20,7 +20,7 @@ $this->load->view('dist/_partials/header');
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
@@ -39,28 +39,26 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (No)</h6>
             <div class="stat">
               <?php
-$filteredSla = array_filter($sla, function ($item) {
-    return $item->sc_durasi < 7;
-});
+              $filteredSla = array_filter($sla, function ($item) {
+                  return $item->sc_durasi < 7;
+              });
 
-$uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
+              $uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
 
-echo count($uniqueIdCases);
-?>
+              echo count($uniqueIdCases);
+              ?>
             </div>
             <!--<div class="label">Total Users</div>-->
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-md-6 col-sm-12">
+      <div class="col-lg-3 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
@@ -72,6 +70,38 @@ echo count($uniqueIdCases);
         </div>
       </div>
     </div>
+    <!--
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card-stat">
+          <div class="card-stat-body">
+            <h6 class="card-stat-title">Meet SLA (No)</h6>
+            <div class="stat">
+              <?php
+                $filteredSla = array_filter($sla, function ($item) {
+                    return $item->sc_durasi < 7;
+                });
+
+                $uniqueIdCases = array_unique(array_column($filteredSla, 'id_case'));
+
+                echo count($uniqueIdCases);
+                ?>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="card-stat">
+          <div class="card-stat-body">
+            <h6 class="card-stat-title">Average MTTR</h6>
+            <div class="stat">
+              <?php echo $card[0]->avg_mttr ?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  -->
     <!--
     <div class="row">
       <div class="col-lg-4">
@@ -202,7 +232,7 @@ if ($slas->sc_durasi < 7) {
           borderWidth: 2,
         },
         {
-          barThickness: 20,
+          barThickness: 40,
           label: 'Meet SLA (YES)',
           data: chartData.map(item => item.under_sla),
           borderColor: 'rgba(255, 0, 0, 1)',
@@ -210,7 +240,7 @@ if ($slas->sc_durasi < 7) {
           borderWidth: 1,
         },
         {
-          barThickness: 20,
+          barThickness: 40,
           label: 'Meet SLA (NO)',
           data: chartData.map(item => item.meet_sla),
           borderColor: 'rgba(0, 0, 255, 1)',
