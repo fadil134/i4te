@@ -232,7 +232,7 @@ if ($slas->sc_durasi < 7) {
           borderWidth: 2,
         },
         {
-          barThickness: 40,
+          barThickness: 30,
           label: 'Meet SLA (YES)',
           data: chartData.map(item => item.under_sla),
           borderColor: 'rgba(255, 0, 0, 1)',
@@ -240,7 +240,7 @@ if ($slas->sc_durasi < 7) {
           borderWidth: 1,
         },
         {
-          barThickness: 40,
+          barThickness: 30,
           label: 'Meet SLA (NO)',
           data: chartData.map(item => item.meet_sla),
           borderColor: 'rgba(0, 0, 255, 1)',
