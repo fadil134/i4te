@@ -65,7 +65,7 @@ echo count($uniqueIdCases);
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
-            <div class="stat">1234</div>
+            <div class="stat"><?php echo $card[0]->avg_mttr ?></div>
             <!--<div class="label">Total Users</div>-->
           </div>
         </div>

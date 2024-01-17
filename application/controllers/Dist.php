@@ -40,10 +40,11 @@ class Dist extends CI_Controller
         $data = array(
             'title' => "Dashboard",
             'sla' => $this->Gamas_model->get_sla(),
-            'chart' => $this->Gamas_model->chart_dashboard()
+            'chart' => $this->Gamas_model->chart_dashboard(),
+            'card' => $this->Gamas_model->card()
         );
 
-        //print_r($data['chart']);
+        //print_r($data['card']);
         $this->load->view('dist/blank', $data);
     }
 

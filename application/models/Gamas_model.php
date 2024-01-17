@@ -43,4 +43,25 @@ class Gamas_model extends CI_Model
 
         return $query->result_array();
     }
+
+    public function card()
+    {
+        $this->db->select('COUNT(gamas.id_case) AS jumlah_case');
+        $this->db->select('SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct)) AS total_TS');
+        $this->db->select('SUM(COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) AS total_OBS');
+        $this->db->select('SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0)) AS MTTR');
+        $this->db->select('SUM(CASE WHEN TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0) < 7 THEN 1 ELSE 0 END) AS under_sla');
+        $this->db->select('SUM(CASE WHEN TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0) > 7 THEN 1 ELSE 0 END) AS meet_sla');
+        $this->db->select("FORMAT(SUM(TIMESTAMPDIFF(HOUR, gamas_ts.opent, gamas_ts.ct) - COALESCE(TIMESTAMPDIFF(HOUR, gamas_obs.sTob, gamas_obs.enDob), 0))/COUNT(gamas.id_case), 2) AS avg_mttr", false);
+
+        $this->db->from('gamas');
+        $this->db->join('gamas_ts', 'gamas_ts.case_id = gamas.id_case', 'left');
+        $this->db->join('gamas_obs', 'gamas_obs.case_id = gamas.id_case', 'left');
+        $this->db->join('master_kota', 'gamas.city_id = master_kota.id', 'left');
+        $this->db->where('gamas.updated_by !=', '');
+        $this->db->order_by('master_kota.kota', 'ASC');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
