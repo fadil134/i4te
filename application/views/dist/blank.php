@@ -100,7 +100,7 @@ echo count($uniqueIdCases);
               <h4>MTTR & Total case</h4>
             </div>
             <div class="card-body">
-              <div class="col-md-6">
+              <div class="col-lg col-md-6">
                 <canvas id="chart"></canvas>
               </div>
             </div>
@@ -117,8 +117,8 @@ echo count($uniqueIdCases);
             <a class="toggle-vis" data-column="3">Durasi Troubleshooting</a> -
             <a class="toggle-vis" data-column="4">Total Durasi</a>
           </div>
-          <div class="col-lg">
-            <table id="example" class="table table-striped table-bordered" style="width: 100%;">
+          <div class="col-lg" style="width: 100%;">
+            <table id="example" class="table table-striped table-bordered">
               <thead>
                 <tr class="text-center">
                   <th>Case Id</th>
