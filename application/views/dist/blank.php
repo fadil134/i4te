@@ -9,7 +9,7 @@ $this->load->view('dist/_partials/header');
       <h1>Dashboard</h1>
     </div>
     <div class="row">
-      <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="col-lg-2 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Total Gamas</h6>
@@ -20,7 +20,7 @@ $this->load->view('dist/_partials/header');
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="col-lg-2 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (Yes)</h6>
@@ -39,7 +39,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="col-lg-2 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Meet SLA (No)</h6>
@@ -58,7 +58,7 @@ echo count($uniqueIdCases);
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
+      <div class="col-lg-2 col-md-6 col-sm-12">
         <div class="card-stat">
           <div class="card-stat-body">
             <h6 class="card-stat-title">Average MTTR</h6>
