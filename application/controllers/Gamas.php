@@ -26,6 +26,20 @@ class Gamas extends CI_Controller
         echo json_encode($this->Kota_model->get_cluster($id));
     }
 
+    public function gamas_detail() {
+        $data = $this->Gamas_model->getGamasData();
+
+        $csvContent = $this->arrayToCsv($data);
+
+        // Set headers for download
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="gamas_data.csv"');
+
+        // Output the CSV content to the browser
+        echo $csvContent;
+        exit();
+    }
+
     public function save()
     {
         $username = $this->session->userdata('username');

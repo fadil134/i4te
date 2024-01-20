@@ -64,4 +64,17 @@ class Gamas_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getGamasData() {
+        $this->db->select('gamas.id_case, gamas_ts.opent, gamas_ts.ct, gamas_impact.cluster_imp, gamas_obs.sTob, gamas_obs.enDob, master_kota.kota');
+        $this->db->from('gamas');
+        $this->db->join('gamas_ts', 'gamas.id_case = gamas_ts.case_id', 'left');
+        $this->db->join('gamas_impact', 'gamas.id_case = gamas_impact.case_id', 'left');
+        $this->db->join('gamas_obs', 'gamas.id_case = gamas_obs.case_id', 'left');
+        $this->db->join('master_kota', 'gamas.city_id = master_kota.id', 'left');
+        $this->db->where('gamas.updated_by !=', '');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
